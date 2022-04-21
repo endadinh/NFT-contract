@@ -1,0 +1,310 @@
+{
+	"compiler": {
+		"version": "0.8.13+commit.abaa5c0e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "previousAdminRole",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "newAdminRole",
+						"type": "bytes32"
+					}
+				],
+				"name": "RoleAdminChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleRevoked",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_ADMIN_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					}
+				],
+				"name": "getRoleAdmin",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "hasRole",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "renounceRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "revokeRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Contract module that allows children to implement role-based access control mechanisms. This is a lightweight version that doesn't allow enumerating role members except through off-chain means by accessing the contract event logs. Some applications may benefit from on-chain enumerability, for those cases see {AccessControlEnumerable}. Roles are referred to by their `bytes32` identifier. These should be exposed in the external API and be unique. The best way to achieve this is by using `public constant` hash digests: ``` bytes32 public constant MY_ROLE = keccak256(\"MY_ROLE\"); ``` Roles can be used to represent a set of permissions. To restrict access to a function call, use {hasRole}: ``` function foo() public {     require(hasRole(MY_ROLE, msg.sender));     ... } ``` Roles can be granted and revoked dynamically via the {grantRole} and {revokeRole} functions. Each role has an associated admin role, and only accounts that have a role's admin role can call {grantRole} and {revokeRole}. By default, the admin role for all roles is `DEFAULT_ADMIN_ROLE`, which means that only accounts with this role will be able to grant or revoke other roles. More complex role relationships can be created by using {_setRoleAdmin}. WARNING: The `DEFAULT_ADMIN_ROLE` is also its own admin: it has permission to grant and revoke this role. Extra precautions should be taken to secure accounts that have been granted it.",
+			"kind": "dev",
+			"methods": {
+				"getRoleAdmin(bytes32)": {
+					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+				},
+				"grantRole(bytes32,address)": {
+					"details": "Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role."
+				},
+				"hasRole(bytes32,address)": {
+					"details": "Returns `true` if `account` has been granted `role`."
+				},
+				"renounceRole(bytes32,address)": {
+					"details": "Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`."
+				},
+				"revokeRole(bytes32,address)": {
+					"details": "Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role."
+				},
+				"supportsInterface(bytes4)": {
+					"details": "See {IERC165-supportsInterface}."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/SQFITEM/AccessControl.sol": "AccessControl"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/SQFITEM/AccessControl.sol": {
+			"keccak256": "0x850cee2bcf1bbcd0b0a1a3ef8d9ce0ed789b807d8a4c0e2dd5b2b987bef691eb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a1fb40d0c4deb123b7322f8dbc1635572a628fee2f383a71cf8c0d61b6c669c4",
+				"dweb:/ipfs/QmUJC8kZsq69SDDiTp5PoMTEgVzW4pjwHgXW6pbdScMAA9"
+			]
+		},
+		"contracts/SQFITEM/Context.sol": {
+			"keccak256": "0x45cb9d70dc84e6f4ec8202a58599a881421174348e0fd4400a99a22678aa7913",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://640ea1ba9707020a73d52eb62afcc682aa0a502e61378ff2e3ed7be701afcaaf",
+				"dweb:/ipfs/QmPup8KPcQQXcz4qz9r1G4ks7bv8jLqrcWNruZyXTto6qy"
+			]
+		},
+		"contracts/SQFITEM/ERC165.sol": {
+			"keccak256": "0x0969c3b761eb3af95a44d2c5b89822572d87441f2ca64d9fa80d7cbab667e42b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e6fac9609abaa5cab3d96f7ebdae42570f8be9dfd5b8578289ae1aceeaa503b6",
+				"dweb:/ipfs/QmX9vGsJP3fgD1W6cVTsp2HFCaD3Gek6ZELT5167eJ2j1T"
+			]
+		},
+		"contracts/SQFITEM/IAccessControl.sol": {
+			"keccak256": "0x287306f447febc349d34d6b1ef445a285370ec0ddac2ede071e447f00b642ac3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ffffd92659e8a50deda3cebb149d697cdc4e9f0b5abfc55d0c2584aeab0cce36",
+				"dweb:/ipfs/QmRaiwwYKHxUf4Uy4fWo6qzAkBF7NaeydMrKumP3fXCDRC"
+			]
+		},
+		"contracts/SQFITEM/IERC165.sol": {
+			"keccak256": "0xf09ac5164ff53811c21c1a05f01ca2b1c91edace33903c767d432b68d92dc587",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6eb4595b183a284785cfb2ad533f52a35cca59bbce92e682479b29157fdbe63d",
+				"dweb:/ipfs/QmfAgJjE7uj73mLaYjqBE5ba5GanWKFyLEG4qmuYxbZ9zR"
+			]
+		},
+		"contracts/SQFITEM/Strings.sol": {
+			"keccak256": "0x680df08ddcc0584a8172db776bffd1753c893c13bcd18b928e22027ae441b000",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://637df747e24b006779e7c945cb0f979c60bbd861bae42254b9814762c0dfba4f",
+				"dweb:/ipfs/QmPChjSFzHTESQsNycgZ7mPG8Xd31hcZKaTN2VLbiAngC9"
+			]
+		}
+	},
+	"version": 1
+}

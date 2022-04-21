@@ -1,0 +1,44 @@
+{
+	"compiler": {
+		"version": "0.6.12+commit.27d51765"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/preSale_contract.sol": "AccountFrozenBalances"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/preSale_contract.sol": {
+			"keccak256": "0x4ca9fe24f3df82165bc457f291233683098f6e200753fffcf10ca2fee1b20723",
+			"urls": [
+				"bzz-raw://307bc6faedf6919721711404f1b05a242902e5dd4a93ffd8c3e020c4d3a1f119",
+				"dweb:/ipfs/QmVvGW2XTsxbNDWXzNmgpyYNk7cGsU884HUCYGaMSSS8wG"
+			]
+		}
+	},
+	"version": 1
+}

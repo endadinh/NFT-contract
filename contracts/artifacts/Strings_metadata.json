@@ -1,0 +1,46 @@
+{
+	"compiler": {
+		"version": "0.7.6+commit.7338295f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "String operations.",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/NFTs_Contract.sol": "Strings"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/NFTs_Contract.sol": {
+			"keccak256": "0x69c7e421fb1ceb8b26362256e234793f2f249419e25c13b79ef05027017dce1c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f25134953c28eabf8213eba10eab025b57e864eb84228e55c936b9d3c3864b1e",
+				"dweb:/ipfs/QmYyw5zwac8P5J2V16Zp9P3BcsrLmst6uukWeHEi4XSF8M"
+			]
+		}
+	},
+	"version": 1
+}

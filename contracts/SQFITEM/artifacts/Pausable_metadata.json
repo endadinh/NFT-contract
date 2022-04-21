@@ -1,0 +1,109 @@
+{
+	"compiler": {
+		"version": "0.8.13+commit.abaa5c0e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Paused",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Unpaused",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Contract module which allows children to implement an emergency stop mechanism that can be triggered by an authorized account. This module is used through inheritance. It will make available the modifiers `whenNotPaused` and `whenPaused`, which can be applied to the functions of your contract. Note that they will not be pausable by simply including this module, only once the modifiers are put in place.",
+			"events": {
+				"Paused(address)": {
+					"details": "Emitted when the pause is triggered by `account`."
+				},
+				"Unpaused(address)": {
+					"details": "Emitted when the pause is lifted by `account`."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"details": "Initializes the contract in unpaused state."
+				},
+				"paused()": {
+					"details": "Returns true if the contract is paused, and false otherwise."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/SQFITEM/Pausable.sol": "Pausable"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/SQFITEM/Context.sol": {
+			"keccak256": "0x45cb9d70dc84e6f4ec8202a58599a881421174348e0fd4400a99a22678aa7913",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://640ea1ba9707020a73d52eb62afcc682aa0a502e61378ff2e3ed7be701afcaaf",
+				"dweb:/ipfs/QmPup8KPcQQXcz4qz9r1G4ks7bv8jLqrcWNruZyXTto6qy"
+			]
+		},
+		"contracts/SQFITEM/Pausable.sol": {
+			"keccak256": "0x98503616f3138d6de41a6577dca9f9f38c2a710131f8aaf13f8eceb79097ac27",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4c69b0682f1fa3fe9485bfaf7de1b1d57d1a9efebab659df8fb56153c42aa1a9",
+				"dweb:/ipfs/Qme4MTtDxVE3dm47GeWF65sCycxVF7CVr55aq75cCzq8Be"
+			]
+		}
+	},
+	"version": 1
+}
