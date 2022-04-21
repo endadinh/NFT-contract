@@ -1,0 +1,639 @@
+{
+	"compiler": {
+		"version": "0.8.13+commit.abaa5c0e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_sqfi",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_fee1",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "fee1",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount1",
+						"type": "uint256"
+					}
+				],
+				"name": "CraftSQFI",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "currency",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "enable",
+						"type": "bool"
+					}
+				],
+				"name": "FeeChange",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Paused",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "previousAdminRole",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "newAdminRole",
+						"type": "bytes32"
+					}
+				],
+				"name": "RoleAdminChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleRevoked",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "UncraftSQFI",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Unpaused",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_ADMIN_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "PAUSER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "SQFi",
+				"outputs": [
+					{
+						"internalType": "contract ISQFItem",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "amount1",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "data",
+						"type": "bytes32"
+					}
+				],
+				"name": "bytes32ToAmount16",
+				"outputs": [
+					{
+						"internalType": "uint256[16]",
+						"name": "amount",
+						"type": "uint256[16]"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "tokenURI_",
+						"type": "string"
+					}
+				],
+				"name": "createSQFI",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_fee1",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount1",
+						"type": "uint256"
+					}
+				],
+				"name": "editSupportedFee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fee1",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					}
+				],
+				"name": "getRoleAdmin",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "hasRole",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "renounceRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "revokeRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "uncraft",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"getRoleAdmin(bytes32)": {
+					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+				},
+				"grantRole(bytes32,address)": {
+					"details": "Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role."
+				},
+				"hasRole(bytes32,address)": {
+					"details": "Returns `true` if `account` has been granted `role`."
+				},
+				"paused()": {
+					"details": "Returns true if the contract is paused, and false otherwise."
+				},
+				"renounceRole(bytes32,address)": {
+					"details": "Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`."
+				},
+				"revokeRole(bytes32,address)": {
+					"details": "Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role."
+				},
+				"supportsInterface(bytes4)": {
+					"details": "See {IERC165-supportsInterface}."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/SQFITEM/SQFI_Factory.sol": "ParagonFactory"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/SQFITEM/AccessControl.sol": {
+			"keccak256": "0x850cee2bcf1bbcd0b0a1a3ef8d9ce0ed789b807d8a4c0e2dd5b2b987bef691eb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a1fb40d0c4deb123b7322f8dbc1635572a628fee2f383a71cf8c0d61b6c669c4",
+				"dweb:/ipfs/QmUJC8kZsq69SDDiTp5PoMTEgVzW4pjwHgXW6pbdScMAA9"
+			]
+		},
+		"contracts/SQFITEM/Address.sol": {
+			"keccak256": "0xc1202fa69783cb3ea0d87f178cab5e1f3a77de7fc0dff3c47f668f3cd65d9273",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ea8da5de19a08cffb966c1ea9925cd263470a91a65c5cdca9cbc8dfb669dd775",
+				"dweb:/ipfs/QmeeDjQ1dPUmQ9CuU77tEYghszLVagP1xoraQJAQJF7Mm3"
+			]
+		},
+		"contracts/SQFITEM/Context.sol": {
+			"keccak256": "0x45cb9d70dc84e6f4ec8202a58599a881421174348e0fd4400a99a22678aa7913",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://640ea1ba9707020a73d52eb62afcc682aa0a502e61378ff2e3ed7be701afcaaf",
+				"dweb:/ipfs/QmPup8KPcQQXcz4qz9r1G4ks7bv8jLqrcWNruZyXTto6qy"
+			]
+		},
+		"contracts/SQFITEM/ERC165.sol": {
+			"keccak256": "0x0969c3b761eb3af95a44d2c5b89822572d87441f2ca64d9fa80d7cbab667e42b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e6fac9609abaa5cab3d96f7ebdae42570f8be9dfd5b8578289ae1aceeaa503b6",
+				"dweb:/ipfs/QmX9vGsJP3fgD1W6cVTsp2HFCaD3Gek6ZELT5167eJ2j1T"
+			]
+		},
+		"contracts/SQFITEM/IAccessControl.sol": {
+			"keccak256": "0x287306f447febc349d34d6b1ef445a285370ec0ddac2ede071e447f00b642ac3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ffffd92659e8a50deda3cebb149d697cdc4e9f0b5abfc55d0c2584aeab0cce36",
+				"dweb:/ipfs/QmRaiwwYKHxUf4Uy4fWo6qzAkBF7NaeydMrKumP3fXCDRC"
+			]
+		},
+		"contracts/SQFITEM/IERC165.sol": {
+			"keccak256": "0xf09ac5164ff53811c21c1a05f01ca2b1c91edace33903c767d432b68d92dc587",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6eb4595b183a284785cfb2ad533f52a35cca59bbce92e682479b29157fdbe63d",
+				"dweb:/ipfs/QmfAgJjE7uj73mLaYjqBE5ba5GanWKFyLEG4qmuYxbZ9zR"
+			]
+		},
+		"contracts/SQFITEM/IERC20.sol": {
+			"keccak256": "0xb55c91551ef864f86edd296378fc3430f19798c0d1de468ff772a83a842df24c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f118e5d475795b9e612bb6c139db18493e65f47f181ddcef446f4fa43e7f80f5",
+				"dweb:/ipfs/QmSRWmUWxpjp8jMtDHqWysWbZqFNVKAyLHcmBtjJRvmoLF"
+			]
+		},
+		"contracts/SQFITEM/ISQFItem.sol": {
+			"keccak256": "0x31d36c8072505efbe076b179b7b96a53674c416fbc47f37983428761c657bf59",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3cc8dc106c41e138684151c204872365446582d080fa7d371b0d47b7d02f740c",
+				"dweb:/ipfs/QmU6G8fFxmnCkDWvoGop8hcq7mT2CkCBxu1Mai72q9yztS"
+			]
+		},
+		"contracts/SQFITEM/Math.sol": {
+			"keccak256": "0xef7b3fc139eede8f159d204c982d86775350be2e81b5fecf97731d531223256e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f3c0ae51ae001dd3028a510d751a8bd473d9c2f99359158817ac4860d3e20b60",
+				"dweb:/ipfs/QmYSSmmzH2SHDtVMA5xGHros8cmnVpq3dL9xawkQTGdWm4"
+			]
+		},
+		"contracts/SQFITEM/Pausable.sol": {
+			"keccak256": "0x98503616f3138d6de41a6577dca9f9f38c2a710131f8aaf13f8eceb79097ac27",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4c69b0682f1fa3fe9485bfaf7de1b1d57d1a9efebab659df8fb56153c42aa1a9",
+				"dweb:/ipfs/Qme4MTtDxVE3dm47GeWF65sCycxVF7CVr55aq75cCzq8Be"
+			]
+		},
+		"contracts/SQFITEM/SQFI_Factory.sol": {
+			"keccak256": "0x00612f378f2ac3523a0c37bfaba702c667f1ffcecbefd588c8252c969f0c74b5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://606061f4ad019d27800ae384dc9af509005d5ac4a6ed408366210647dbe9e7a2",
+				"dweb:/ipfs/QmZPULsjqiBU5k7WyD2xYevow1EW9mAn1uyjUAeSCxu7Pe"
+			]
+		},
+		"contracts/SQFITEM/SafeERC20.sol": {
+			"keccak256": "0x302447efaecd2f0450ed5cba9431977b8be861d4941aae3dbaa8807cd109e7c9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ec766e155ddbe02a015b5b3963d3bc146d2eb3de7e6936b810c4040515b18fa1",
+				"dweb:/ipfs/QmW3dukGtJ2g8pimiHADFd6cbeppqhAimy3pAqSbZnGT5B"
+			]
+		},
+		"contracts/SQFITEM/SafeMath.sol": {
+			"keccak256": "0x7408e0b6e09c3e683d0666d319daaf6f2b4e2b1c063dd9f857c4af5158491021",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://55a9f1585597d72b8b18578a6e6c13f8716e00bd806325babb42db1d12361429",
+				"dweb:/ipfs/QmfYUash3a9F22mQWAmH2ZW94nm66hJe8s7jy5xyq5o1q8"
+			]
+		},
+		"contracts/SQFITEM/Strings.sol": {
+			"keccak256": "0x680df08ddcc0584a8172db776bffd1753c893c13bcd18b928e22027ae441b000",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://637df747e24b006779e7c945cb0f979c60bbd861bae42254b9814762c0dfba4f",
+				"dweb:/ipfs/QmPChjSFzHTESQsNycgZ7mPG8Xd31hcZKaTN2VLbiAngC9"
+			]
+		}
+	},
+	"version": 1
+}

@@ -193,6 +193,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "string",
+						"name": "source",
+						"type": "string"
+					}
+				],
+				"name": "stringToBytes32",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "result",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "bytes4",
 						"name": "interfaceId",
 						"type": "bytes4"
@@ -211,11 +230,10 @@
 			}
 		],
 		"devdoc": {
-			"details": "Contract module that allows children to implement role-based access control mechanisms. This is a lightweight version that doesn't allow enumerating role members except through off-chain means by accessing the contract event logs. Some applications may benefit from on-chain enumerability, for those cases see {AccessControlEnumerable}. Roles are referred to by their `bytes32` identifier. These should be exposed in the external API and be unique. The best way to achieve this is by using `public constant` hash digests: ``` bytes32 public constant MY_ROLE = keccak256(\"MY_ROLE\"); ``` Roles can be used to represent a set of permissions. To restrict access to a function call, use {hasRole}: ``` function foo() public {     require(hasRole(MY_ROLE, msg.sender));     ... } ``` Roles can be granted and revoked dynamically via the {grantRole} and {revokeRole} functions. Each role has an associated admin role, and only accounts that have a role's admin role can call {grantRole} and {revokeRole}. By default, the admin role for all roles is `DEFAULT_ADMIN_ROLE`, which means that only accounts with this role will be able to grant or revoke other roles. More complex role relationships can be created by using {_setRoleAdmin}. WARNING: The `DEFAULT_ADMIN_ROLE` is also its own admin: it has permission to grant and revoke this role. Extra precautions should be taken to secure accounts that have been granted it.",
 			"kind": "dev",
 			"methods": {
 				"getRoleAdmin(bytes32)": {
-					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {AccessControl-_setRoleAdmin}."
 				},
 				"grantRole(bytes32,address)": {
 					"details": "Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role."
@@ -258,11 +276,11 @@
 	},
 	"sources": {
 		"contracts/SQFITEM/AccessControl.sol": {
-			"keccak256": "0x850cee2bcf1bbcd0b0a1a3ef8d9ce0ed789b807d8a4c0e2dd5b2b987bef691eb",
+			"keccak256": "0xa8d7409ad562a343f68690f91b143ec3d9ae65ed43e7c44ac48ae290bb3946c3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a1fb40d0c4deb123b7322f8dbc1635572a628fee2f383a71cf8c0d61b6c669c4",
-				"dweb:/ipfs/QmUJC8kZsq69SDDiTp5PoMTEgVzW4pjwHgXW6pbdScMAA9"
+				"bzz-raw://4c91bff4d503a5d0094b15611b6296bd136236ed464d078f96c1f6ed164b8c03",
+				"dweb:/ipfs/QmQ9M6hMcsAumNjPRKZh9hQpDPECZoq6eSCdWZZaxZrMhP"
 			]
 		},
 		"contracts/SQFITEM/Context.sol": {

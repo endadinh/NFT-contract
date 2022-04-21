@@ -22,13 +22,12 @@ contract SQFItem is
     using Counters for Counters.Counter;
 
     struct SQFI {
-        bytes32 originalArt;
-        bytes32 rawHashed;
-        bytes32 runesList;
         uint8 status;
     }
 
     mapping(uint256 => SQFI) public SQFItemDetail;
+    mapping(uint256 => string) public _tokenURIs;
+
     string private _URI;
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
@@ -42,12 +41,12 @@ contract SQFItem is
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(PAUSER_ROLE, msg.sender);
         _setupRole(MINTER_ROLE, msg.sender);
+        _setupRole(HYDRA_ROLE,msg.sender);
     }
 
     function _baseURI() internal view override returns (string memory) {
         return _URI;
     }
-
     function changeBaseURI(string memory _newURI)
         public
         onlyRole(DEFAULT_ADMIN_ROLE)
@@ -68,40 +67,37 @@ contract SQFItem is
         view
         returns (
             address owner,
-            bytes32 originalArt,
-            bytes32 rawHashed,
-            bytes32 runesList,
-            uint8 status
+            uint8 status,
+            string memory tokenURI_
         )
     {
         SQFI memory item = SQFItemDetail[tokenId];
         return (
             ownerOf(tokenId),
-            item.originalArt,
-            item.rawHashed,
-            item.runesList,
-            item.status
+            item.status,
+            tokenURI(tokenId)
         );
+    }
+    
+    function setMinter( address to) 
+    public onlyRole(DEFAULT_ADMIN_ROLE) { 
+        _setupRole(MINTER_ROLE, to);
     }
 
     function safeMint(
         address to,
-        bytes32 originalArt,
-        bytes32 rawHashed,
-        bytes32 runesList
+        string memory tokenURI_
     ) public onlyRole(MINTER_ROLE) returns (uint256) {
         _safeMint(to, _tokenIdCounter.current());
         SQFItemDetail[_tokenIdCounter.current()] = SQFI(
-            originalArt,
-            rawHashed,
-            runesList,
             0
         );
+        super._setTokenURI(_tokenIdCounter.current(), tokenURI_);
         _tokenIdCounter.increment();
         return _tokenIdCounter.current() - 1;
     }
 
-    function activeParagon(uint256[] memory tokenId, uint8[] memory status)
+    function activeItem(uint256[] memory tokenId, uint8[] memory status)
         public
         onlyRole(HYDRA_ROLE)
     {

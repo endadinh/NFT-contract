@@ -268,24 +268,28 @@
 				"name": "SQFItemDetail",
 				"outputs": [
 					{
-						"internalType": "bytes32",
-						"name": "originalArt",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "rawHashed",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "runesList",
-						"type": "bytes32"
-					},
-					{
 						"internalType": "uint8",
 						"name": "status",
 						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "_tokenURIs",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -304,7 +308,7 @@
 						"type": "uint8[]"
 					}
 				],
-				"name": "activeParagon",
+				"name": "activeItem",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -492,24 +496,14 @@
 						"type": "address"
 					},
 					{
-						"internalType": "bytes32",
-						"name": "originalArt",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "rawHashed",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "runesList",
-						"type": "bytes32"
-					},
-					{
 						"internalType": "uint8",
 						"name": "status",
 						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "tokenURI_",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -611,19 +605,9 @@
 						"type": "address"
 					},
 					{
-						"internalType": "bytes32",
-						"name": "originalArt",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "rawHashed",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "runesList",
-						"type": "bytes32"
+						"internalType": "string",
+						"name": "tokenURI_",
+						"type": "string"
 					}
 				],
 				"name": "safeMint",
@@ -704,6 +688,38 @@
 				"name": "setApprovalForAll",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "setMinter",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "source",
+						"type": "string"
+					}
+				],
+				"name": "stringToBytes32",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "result",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -857,7 +873,7 @@
 					"details": "See {IERC721-getApproved}."
 				},
 				"getRoleAdmin(bytes32)": {
-					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {AccessControl-_setRoleAdmin}."
 				},
 				"grantRole(bytes32,address)": {
 					"details": "Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role."
@@ -933,11 +949,11 @@
 	},
 	"sources": {
 		"contracts/SQFITEM/AccessControl.sol": {
-			"keccak256": "0x850cee2bcf1bbcd0b0a1a3ef8d9ce0ed789b807d8a4c0e2dd5b2b987bef691eb",
+			"keccak256": "0xa8d7409ad562a343f68690f91b143ec3d9ae65ed43e7c44ac48ae290bb3946c3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a1fb40d0c4deb123b7322f8dbc1635572a628fee2f383a71cf8c0d61b6c669c4",
-				"dweb:/ipfs/QmUJC8kZsq69SDDiTp5PoMTEgVzW4pjwHgXW6pbdScMAA9"
+				"bzz-raw://4c91bff4d503a5d0094b15611b6296bd136236ed464d078f96c1f6ed164b8c03",
+				"dweb:/ipfs/QmQ9M6hMcsAumNjPRKZh9hQpDPECZoq6eSCdWZZaxZrMhP"
 			]
 		},
 		"contracts/SQFITEM/Address.sol": {
@@ -1069,11 +1085,11 @@
 			]
 		},
 		"contracts/SQFITEM/SqfItem.sol": {
-			"keccak256": "0xb813248b7e4acac43705af9f7d5d8610e9216365077178c937883ecec1bf9607",
+			"keccak256": "0x3de563dfd3878ff79144362cd0e90e6c16305668257086d9907c65e8ee974420",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8f450bc5fd7b36768a48787168c2481abc614502633d6b706493100b70769bf8",
-				"dweb:/ipfs/QmWTteMVmLBzsSjy4r9XCdTCcncH21EfcWzAnQfdhkjXQR"
+				"bzz-raw://adf4977ebf8e8aab3c42e651fb386d0eec3596222e96b50acb4f65347d1479fb",
+				"dweb:/ipfs/QmS8ESKtUhZScfSxvEcfWLBvhsE77KDLj9iCRgdnt6g3gc"
 			]
 		},
 		"contracts/SQFITEM/Strings.sol": {

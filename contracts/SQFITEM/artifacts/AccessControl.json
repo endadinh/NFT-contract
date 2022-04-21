@@ -55,6 +55,7 @@
 			"hasRole(bytes32,address)": "91d14854",
 			"renounceRole(bytes32,address)": "36568abe",
 			"revokeRole(bytes32,address)": "d547741f",
+			"stringToBytes32(string)": "cfb51928",
 			"supportsInterface(bytes4)": "01ffc9a7"
 		}
 	},
@@ -242,6 +243,25 @@
 			"name": "revokeRole",
 			"outputs": [],
 			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "source",
+					"type": "string"
+				}
+			],
+			"name": "stringToBytes32",
+			"outputs": [
+				{
+					"internalType": "bytes32",
+					"name": "result",
+					"type": "bytes32"
+				}
+			],
+			"stateMutability": "pure",
 			"type": "function"
 		},
 		{

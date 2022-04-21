@@ -1,0 +1,132 @@
+{
+	"compiler": {
+		"version": "0.8.13+commit.abaa5c0e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "burn",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "paragonInfo",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "originalArt",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "rawHashed",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "runesList",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint8",
+						"name": "status",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "originalArt",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "rawHashed",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "runesList",
+						"type": "bytes32"
+					}
+				],
+				"name": "safeMint",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/SQFITEM/ISQFItem.sol": "ISQFI"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/SQFITEM/ISQFItem.sol": {
+			"keccak256": "0x6cad40f7a78b1487f981c92346a03296af22255764e4025b37116b66b6e0c514",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://25d3123f01045c66194fad8dfb1275acc6e9cc82c37eb7b523c35f517d55f9af",
+				"dweb:/ipfs/QmNx7b4DAELtPEVkHxfZPkBWbmhEpY6tPrgceuB92qvAnS"
+			]
+		}
+	},
+	"version": 1
+}
