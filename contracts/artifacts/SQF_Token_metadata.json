@@ -805,7 +805,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Token_PreSale.sol": "SQF_Token"
+			"contracts/SQF_Token.sol": "SQF_Token"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -819,11 +819,11 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Token_PreSale.sol": {
-			"keccak256": "0x2a544d0688a6eecf7018844b2f085af23f33955a8e8a9c80e21d2d9faf06b340",
+		"contracts/SQF_Token.sol": {
+			"keccak256": "0x865048400817435612e58deda227432c30a1357d57248c1453e2149daf763ab7",
 			"urls": [
-				"bzz-raw://d2d6668f95a7533933adcb22d4ed90c671b429fe42015b4f9be634f753802f80",
-				"dweb:/ipfs/QmU9VoJv4uxjjhZBEFuEp4SpLjZgh8XrwegjwanKSeehPS"
+				"bzz-raw://c568a0661e1ee926dfde6b77d657ceb7c5a922ab0c8b701fde7a1a4b30142369",
+				"dweb:/ipfs/QmfTiX8HYWGUfeFQQz4cWCiSnq22QUUhwQZtE229vqCpHt"
 			]
 		}
 	},

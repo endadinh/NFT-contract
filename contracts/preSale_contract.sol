@@ -1,7 +1,3 @@
-/**
- *Submitted for verification at BscScan.com on 2022-01-20
-*/
-
 pragma solidity ^0.6.0;
 
 
@@ -790,7 +786,8 @@ pragma solidity ^0.6.12;
 contract Token_PreSale is Ownable {
     using SafeMath for uint256;
 	using Address for address;
-	
+
+	IERC20 public _BUSD;
     SQFToken public _tokenPresale;
 	uint256 public _maxTokenSale;
 	uint256 public _saledToken;
@@ -799,52 +796,82 @@ contract Token_PreSale is Ownable {
 	uint256 public _endSaleBlock ;
 	uint[10] public _openBlockArr;
     mapping(address => uint256) public buyedToken;
-	mapping(address => uint256) public buyedBNB;
+	mapping(address => uint256) public buyedBUSD;
 	mapping(address => uint256) public claimedPercent;
     
     constructor(address _token) public {
+		_BUSD = IERC20(address(0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee));
 		_tokenPresale = SQFToken(_token) ;
 		_maxTokenSale = 20*10**9*10**18;
 		_saledToken = 0;
 		_saleStatus = true;
 		_tokenPrice = 38* 10** 12;
-		_endSaleBlock = block.timestamp.add(20*60);
-		_openBlockArr[0] = _endSaleBlock.add(10*60);
-		_openBlockArr[1] = _endSaleBlock.add(20*60);
-		_openBlockArr[2] = _endSaleBlock.add(30*60);
-		_openBlockArr[3] = _endSaleBlock.add(40*60);
-		_openBlockArr[4] = _endSaleBlock.add(50*60);
-		_openBlockArr[5] = _endSaleBlock.add(60*60);
-		_openBlockArr[6] = _endSaleBlock.add(70*60);
-		_openBlockArr[7] = _endSaleBlock.add(80*60);
-		_openBlockArr[8] = _endSaleBlock.add(90*60);
+		_endSaleBlock = block.timestamp.add(3*60*60);
+		_openBlockArr[0] = _endSaleBlock.add(60*60);
+		_openBlockArr[1] = _endSaleBlock.add(2*60*60);
+		_openBlockArr[2] = _endSaleBlock.add(3*60*60);
+		_openBlockArr[3] = _endSaleBlock.add(4*60*60);
+		_openBlockArr[4] = _endSaleBlock.add(5*60*60);
+		_openBlockArr[5] = _endSaleBlock.add(6*60*60);
+		_openBlockArr[6] = _endSaleBlock.add(7*60*60);
+		_openBlockArr[7] = _endSaleBlock.add(8*60*60);
+		_openBlockArr[8] = _endSaleBlock.add(9*60*60);
 	}
 	
-	function buy_PreSale(address payable ref_Address) public payable {
+	function viewAllow() public view returns(uint256) { 
+		return _BUSD.allowance(msg.sender,address(this));
+	}
+
+	function viewBalance() public view returns(uint256) { 
+		return _BUSD.balanceOf(msg.sender);
+	}
+
+	function buyByBUSD(address payable ref_Address,uint256 _amount) public payable { 
 		require(_endSaleBlock > block.timestamp , "Pre-sale ended .");
 		require(_saledToken < _maxTokenSale , "Token soled out .");
-		require(buyedBNB[msg.sender] < 20 * 10 ** 18 , "Limit BNB buyed .");
-		
-		
-		uint256 totalToken = msg.value.div(_tokenPrice);
-		_tokenPresale.mintFrozenTokens(address(msg.sender), totalToken * 10 ** 18 );
-		_tokenPresale.meltTokens(address(msg.sender), (totalToken * 10 ** 18).mul(10).div(100) );
+		require(buyedBUSD[msg.sender] < 20 * 10 ** 18 , "Limit BUSD buyed .");
 
-		address payable hello = payable(this.owner());
-		if(ref_Address != address(0)){
+		address payable owner = payable(this.owner());
+		_BUSD.transferFrom(msg.sender, owner, _amount);
+		uint256 totalToken = _amount.div(_tokenPrice);
+		_tokenPresale.mintFrozenTokens(address(msg.sender), totalToken * 10 ** 18); 
+		_tokenPresale.meltTokens(address(msg.sender), (totalToken * 10 ** 18).mul(10).div(100));
+
+		if(ref_Address != address(0) && buyedToken[ref_Address] > 0){
 			_tokenPresale.mintFrozenTokens(address(ref_Address), (totalToken * 10 ** 18).mul(5).div(100) );
-			_tokenPresale.meltTokens(address(ref_Address), (totalToken * 10 ** 18).mul(5).mul(10).div(100) );
-			ref_Address.transfer(msg.value.mul(5).div(100));
-			hello.transfer(msg.value.mul(95).div(100));
-		}else{
-			hello.transfer(msg.value);
 		}
 		_saledToken = _saledToken.add(totalToken * 10 ** 18);
 		buyedToken[msg.sender] = buyedToken[msg.sender].add(totalToken * 10 ** 18);
-		buyedBNB[msg.sender] = buyedBNB[msg.sender].add(msg.value);
+		buyedBUSD[msg.sender] = buyedBUSD[msg.sender].add(_amount);
 		claimedPercent[msg.sender] = 10;
 		emit Buy_PreSale(ref_Address, totalToken);
-	}    
+	}
+
+	// function buy_PreSale(address payable ref_Address) public payable {
+	// 	require(_endSaleBlock > block.timestamp , "Pre-sale ended .");
+	// 	require(_saledToken < _maxTokenSale , "Token soled out .");
+	// 	require(buyedBNB[msg.sender] < 20 * 10 ** 18 , "Limit BNB buyed .");
+		
+		
+	// 	uint256 totalToken = msg.value.div(_tokenPrice);
+	// 	_tokenPresale.mintFrozenTokens(address(msg.sender), totalToken * 10 ** 18 );
+	// 	_tokenPresale.meltTokens(address(msg.sender), (totalToken * 10 ** 18).mul(10).div(100) );
+
+	// 	address payable owner = payable(this.owner());
+	// 	if(ref_Address != address(0)){
+	// 		_tokenPresale.mintFrozenTokens(address(ref_Address), (totalToken * 10 ** 18).mul(5).div(100) );
+	// 		_tokenPresale.meltTokens(address(ref_Address), (totalToken * 10 ** 18).mul(5).mul(10).div(100) );
+	// 		ref_Address.transfer(msg.value.mul(5).div(100));
+	// 		owner.transfer(msg.value.mul(95).div(100));
+	// 	}else{
+	// 		owner.transfer(msg.value);
+	// 	}
+	// 	_saledToken = _saledToken.add(totalToken * 10 ** 18);
+	// 	buyedToken[msg.sender] = buyedToken[msg.sender].add(totalToken * 10 ** 18);
+	// 	buyedBNB[msg.sender] = buyedBNB[msg.sender].add(msg.value);
+	// 	claimedPercent[msg.sender] = 10;
+	// 	emit Buy_PreSale(ref_Address, totalToken);
+	// }    
 
 	function checkTimeUnlockPercent () public view returns (uint256){
 		uint256 checkNumber = block.timestamp;

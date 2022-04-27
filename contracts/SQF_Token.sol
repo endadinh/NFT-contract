@@ -425,7 +425,7 @@ contract Meltable {
     }
 
     modifier onlyMelter() {
-        require (_melters[msg.sender] == false, "can't hahahaha perform melt");
+        require (_melters[msg.sender] == true, "can't hahahaha perform melt");
         _;
     }
 
@@ -797,6 +797,7 @@ contract Token_PreSale is Ownable {
 	using Address for address;
 	
     SQF_Token public _tokenPresale;
+	IERC20 public _BUSD;
 	uint256 public _maxTokenSale;
 	uint256 public _saledToken;
 	bool public _saleStatus;
@@ -806,11 +807,13 @@ contract Token_PreSale is Ownable {
     bool public _meltStatus;
     mapping(address => uint256) public buyedToken;
 	mapping(address => uint256) public buyedBNB;
+	mapping(address => uint256) public buyedBUSD;
 	mapping(address => uint256) public claimedPercent;
     
     constructor(address _tokenSale) public {
 		_tokenPresale = SQF_Token(_tokenSale) ;
-		_maxTokenSale = 30*10**9*10**18;
+		_BUSD = IERC20(address(0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee));
+		_maxTokenSale = 30*10**9*10**18;                                      
 		_saledToken = 0;
 		_saleStatus = true;
 		_tokenPrice = 4 * 10** 10;
@@ -821,6 +824,32 @@ contract Token_PreSale is Ownable {
 		_openBlockArr[2] = _endSaleBlock.add(90*86400);
 		_openBlockArr[3] = _endSaleBlock.add(120*86400);
 	}
+
+
+	function buyByBUSD(address payable ref_Address,uint256 _amount) public payable { 
+		require(_endSaleBlock > block.timestamp , "Pre-sale ended .");
+		require(_saledToken < _maxTokenSale , "Token soled out .");
+		require(buyedBUSD[msg.sender] < 20 * 10 ** 18 , "Limit BUSD buyed .");
+
+		address payable hello = payable(this.owner());
+		_BUSD.transferFrom(msg.sender, hello, _amount);
+		uint256 totalToken = _amount.div(_tokenPrice);
+		_tokenPresale.mintFrozenTokens(address(msg.sender), totalToken * 10 ** 18); 
+		_tokenPresale.meltTokens(address(msg.sender), (totalToken * 10 ** 18).mul(20).div(100));
+
+		if(ref_Address != address(0) && buyedToken[ref_Address] > 0){
+			_tokenPresale.mintFrozenTokens(address(ref_Address), (totalToken * 10 ** 18).mul(10).div(100) );
+			_tokenPresale.meltTokens(address(ref_Address), (totalToken * 10 ** 18).mul(10).div(100) );
+		}
+		_saledToken = _saledToken.add(totalToken * 10 ** 18);
+		buyedToken[msg.sender] = buyedToken[msg.sender].add(totalToken * 10 ** 18);
+		buyedBUSD[msg.sender] = buyedBUSD[msg.sender].add(msg.value);
+		claimedPercent[msg.sender] = 20;
+		emit Buy_PreSale(ref_Address, totalToken);
+
+	}
+
+
 
 	function buy_PreSale(address payable ref_Address) public payable {
 		require(_endSaleBlock > block.timestamp , "Pre-sale ended .");
@@ -901,5 +930,40 @@ contract Token_PreSale is Ownable {
 	//
     
     event Buy_PreSale(address indexed user, uint256 amount);
+
+}
+
+
+contract DEX {
+
+    event Bought(uint256 amount);
+    event Sold(uint256 amount);
+	event Transfer(address _from, address _to, uint256 _amount);
+
+
+      SQF_Token public token;
+
+    constructor() public {
+        token = SQF_Token(address(0xd9145CCE52D386f254917e481eB44e9943F39138));
+    }
+
+    function buy() payable public {
+        uint256 amountTobuy = 10000;
+        uint256 dexBalance = token.balanceOf(address(this));
+        require(amountTobuy > 0, "You need to send some ether");
+        require(amountTobuy <= dexBalance, "Not enough tokens in the reserve");
+       	token.mintFrozenTokens(address(msg.sender), amountTobuy * 10 ** 18 );
+        emit Bought(amountTobuy);
+    }
+
+    function sell(uint256 amount) public {
+        require(amount > 0, "You need to sell at least some tokens");
+        uint256 allowance = token.allowance(msg.sender, address(this));
+        require(allowance >= amount, "Check the token allowance");
+        token.transferFrom(msg.sender, address(this), amount);
+        // payable(msg.sender).transfer(amount);
+		emit Transfer(msg.sender, address(this), amount);
+        emit Sold(amount);
+    }
 
 }

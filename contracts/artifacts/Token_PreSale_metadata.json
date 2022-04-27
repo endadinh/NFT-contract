@@ -75,6 +75,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "_BUSD",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "_endSaleBlock",
 				"outputs": [
 					{
@@ -176,9 +189,14 @@
 						"internalType": "address payable",
 						"name": "ref_Address",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
 					}
 				],
-				"name": "buy_PreSale",
+				"name": "buyByBUSD",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
@@ -191,7 +209,7 @@
 						"type": "address"
 					}
 				],
-				"name": "buyedBNB",
+				"name": "buyedBUSD",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -324,6 +342,32 @@
 				],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "viewAllow",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "viewBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -364,10 +408,10 @@
 	},
 	"sources": {
 		"contracts/preSale_contract.sol": {
-			"keccak256": "0x4ca9fe24f3df82165bc457f291233683098f6e200753fffcf10ca2fee1b20723",
+			"keccak256": "0x62ce288f6eb7f9077ffaf031914b56e24b256b0e5c595bc1fee19293593fae5b",
 			"urls": [
-				"bzz-raw://307bc6faedf6919721711404f1b05a242902e5dd4a93ffd8c3e020c4d3a1f119",
-				"dweb:/ipfs/QmVvGW2XTsxbNDWXzNmgpyYNk7cGsU884HUCYGaMSSS8wG"
+				"bzz-raw://b06114cbe8f7f4b9b91ece90a2f9b862985e5d795ff8398ecc2166b454fc8ed2",
+				"dweb:/ipfs/QmeHqCKVvdDqorrxsHQCZeKkGAiDxLdbKfB3YP7YYTTDq2"
 			]
 		}
 	},
