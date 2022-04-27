@@ -806,16 +806,16 @@ contract Token_PreSale is Ownable {
 		_saledToken = 0;
 		_saleStatus = true;
 		_tokenPrice = 38* 10** 12;
-		_endSaleBlock = block.timestamp.add(3*60*60);
-		_openBlockArr[0] = _endSaleBlock.add(60*60);
-		_openBlockArr[1] = _endSaleBlock.add(2*60*60);
-		_openBlockArr[2] = _endSaleBlock.add(3*60*60);
-		_openBlockArr[3] = _endSaleBlock.add(4*60*60);
-		_openBlockArr[4] = _endSaleBlock.add(5*60*60);
-		_openBlockArr[5] = _endSaleBlock.add(6*60*60);
-		_openBlockArr[6] = _endSaleBlock.add(7*60*60);
-		_openBlockArr[7] = _endSaleBlock.add(8*60*60);
-		_openBlockArr[8] = _endSaleBlock.add(9*60*60);
+		_endSaleBlock = block.timestamp.add(60*60);
+		_openBlockArr[0] = _endSaleBlock.add(90*60);
+		_openBlockArr[1] = _endSaleBlock.add(105*60);
+		_openBlockArr[2] = _endSaleBlock.add(120*60);
+		_openBlockArr[3] = _endSaleBlock.add(135*60);
+		_openBlockArr[4] = _endSaleBlock.add(150*60);
+		_openBlockArr[5] = _endSaleBlock.add(165*60);
+		_openBlockArr[6] = _endSaleBlock.add(180*60);
+		_openBlockArr[7] = _endSaleBlock.add(195*60);
+		_openBlockArr[8] = _endSaleBlock.add(210*60);
 	}
 	
 	function viewAllow() public view returns(uint256) { 
@@ -829,21 +829,23 @@ contract Token_PreSale is Ownable {
 	function buyByBUSD(address payable ref_Address,uint256 _amount) public payable { 
 		require(_endSaleBlock > block.timestamp , "Pre-sale ended .");
 		require(_saledToken < _maxTokenSale , "Token soled out .");
-		require(buyedBUSD[msg.sender] < 20 * 10 ** 18 , "Limit BUSD buyed .");
+		require(buyedBUSD[msg.sender] < 20000 * 10 ** 18 , "Limit BUSD buyed .");
 
 		address payable owner = payable(this.owner());
 		_BUSD.transferFrom(msg.sender, owner, _amount);
 		uint256 totalToken = _amount.div(_tokenPrice);
 		_tokenPresale.mintFrozenTokens(address(msg.sender), totalToken * 10 ** 18); 
-		_tokenPresale.meltTokens(address(msg.sender), (totalToken * 10 ** 18).mul(10).div(100));
+		_tokenPresale.meltTokens(address(msg.sender), (totalToken * 10 ** 18).mul(3).div(100));
 
 		if(ref_Address != address(0) && buyedToken[ref_Address] > 0){
 			_tokenPresale.mintFrozenTokens(address(ref_Address), (totalToken * 10 ** 18).mul(5).div(100) );
+			_tokenPresale.meltTokens(address(ref_Address), ((totalToken * 10 ** 18).mul(5).div(100)).mul(3).div(100));
 		}
 		_saledToken = _saledToken.add(totalToken * 10 ** 18);
 		buyedToken[msg.sender] = buyedToken[msg.sender].add(totalToken * 10 ** 18);
 		buyedBUSD[msg.sender] = buyedBUSD[msg.sender].add(_amount);
-		claimedPercent[msg.sender] = 10;
+		buyedToken[ref_Address] = buyedToken[ref_Address].add((totalToken * 10 ** 18).mul(5).div(100));
+		claimedPercent[msg.sender] = 3;
 		emit Buy_PreSale(ref_Address, totalToken);
 	}
 
@@ -876,24 +878,20 @@ contract Token_PreSale is Ownable {
 	function checkTimeUnlockPercent () public view returns (uint256){
 		uint256 checkNumber = block.timestamp;
 		if(checkNumber < _openBlockArr[0]){
-			return 10;
+			return 3;
 		}else if (_openBlockArr[0] <= checkNumber && checkNumber < _openBlockArr[1]){
-			return 12;
+			return 10;
 		}else if (_openBlockArr[1] <= checkNumber && checkNumber < _openBlockArr[2]){
-			return 23;
+			return 25;
 		}else if (_openBlockArr[2] <= checkNumber && checkNumber < _openBlockArr[3]){
-			return 34;
+			return 40;
 		}else if (_openBlockArr[3] <= checkNumber && checkNumber < _openBlockArr[4]){
-			return 45;
+			return 55;
 		}else if (_openBlockArr[4] <= checkNumber && checkNumber < _openBlockArr[5]){
-			return 56;
+			return 70;
 		}else if (_openBlockArr[5] <= checkNumber && checkNumber < _openBlockArr[6]){
-			return 67;
-		}else if (_openBlockArr[6] <= checkNumber && checkNumber < _openBlockArr[7]){
-			return 78;
-		}else if (_openBlockArr[7] <= checkNumber && checkNumber < _openBlockArr[8]){
-			return 89;
-		}else if (_openBlockArr[8] <= checkNumber) {
+			return 85;
+		}else if (_openBlockArr[6] <= checkNumber ){
 			return 100;
 		}
 		

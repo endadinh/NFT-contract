@@ -99,10 +99,10 @@
 	},
 	"sources": {
 		"contracts/preSale_contract.sol": {
-			"keccak256": "0x62ce288f6eb7f9077ffaf031914b56e24b256b0e5c595bc1fee19293593fae5b",
+			"keccak256": "0x59fc1a23382e3107c633b9be2433d7266b933345cb90e421a74f9435187f1895",
 			"urls": [
-				"bzz-raw://b06114cbe8f7f4b9b91ece90a2f9b862985e5d795ff8398ecc2166b454fc8ed2",
-				"dweb:/ipfs/QmeHqCKVvdDqorrxsHQCZeKkGAiDxLdbKfB3YP7YYTTDq2"
+				"bzz-raw://c31548d0ad8a5b328e7a17f9049edc9fa65a53ab4dff4d3f8b395ceacabe336a",
+				"dweb:/ipfs/QmVy3iVGbKRcBtaeunXGsMwpkEtQunU9eGJYyNXbiN8DK4"
 			]
 		}
 	},
